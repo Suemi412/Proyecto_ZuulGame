@@ -49,21 +49,7 @@ public class Game {
         System.out.println("World of Zuul es un juego de aventuras nuevo e increíblemente aburrido.");
         System.out.println("Escriba 'help' si necesita ayuda.");
         System.out.println();
-        System.out.println("Usted está " + habitacionActual.getDescripcion());
-        System.out.print("Salidas: ");
-        if(habitacionActual.salidaNorte != null) {
-            System.out.print("norte ");
-        }
-        if(habitacionActual.salidaEste != null) {
-            System.out.print("este ");
-        }
-        if(habitacionActual.salidaSur != null) {
-            System.out.print("sur ");
-        }
-        if(habitacionActual.salidaOeste != null) {
-            System.out.print("oeste ");
-        }
-        System.out.println();
+        printSalidasActuales();
     }
     /*Tomando el mando que se coloco lo procesa para 
     revisar si el usuario no quiere salirse del juego, 
@@ -124,21 +110,7 @@ public class Game {
             System.out.println("¡No hay puerta!");
         }else{
             habitacionActual=SigHabitacion;
-            System.out.println("Usted está " + habitacionActual.getDescripcion());
-            System.out.println("Salidas:");
-            if(habitacionActual.salidaNorte != null) {
-                System.out.print("norte ");
-            }
-            if(habitacionActual.salidaEste != null) {
-                System.out.print("este ");
-            }
-            if(habitacionActual.salidaSur != null) {
-                System.out.print("sur ");
-            }
-            if(habitacionActual.salidaOeste != null) {
-                System.out.print("oeste ");
-            }
-            System.out.println();
+            printSalidasActuales();
         }
     }
 
@@ -152,5 +124,17 @@ public class Game {
     }
     public static void main(String args[]){
         new Game().jugar();
+    }
+    
+    private void printSalidasActuales() {
+    	System.out.println("Usted esta " + habitacionActual.getDescripcion());
+        System.out.println("Salidas:");
+        
+        if(habitacionActual.salidaNorte != null) System.out.print("norte ");
+        if(habitacionActual.salidaEste != null) System.out.print("este ");
+        if(habitacionActual.salidaSur != null) System.out.print("sur ");
+        if(habitacionActual.salidaOeste != null) System.out.print("oeste ");
+        
+        System.out.println();
     }
 }
