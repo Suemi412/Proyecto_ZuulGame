@@ -57,24 +57,15 @@ public class Game {
     y mandar a sus respectivas funciones si el usuario puso otra mando.
     */
     private boolean comandoProceso(Command command) {
-        boolean quiereSalir=false;
         if(command.esDesconocido()){
             System.out.println("No entiendo lo que quisiste decir");
             return false;
         }
-        String palabraMando=command.getPalabraComando();
-        if(palabraMando.equals("ayuda")){
-            imprimirAyuda();
-        }else{
-            if(palabraMando.equals("ir")){
-                irHabitacion(command);
-            }else{
-                if(palabraMando.equals("salir")){
-                    quiereSalir=salir(command);
-                }
-            }
-        }
-        return quiereSalir;
+        String palabraMando = command.getPalabraComando();
+        if(palabraMando.equals("salir")) return salir(command);
+        if(palabraMando.equals("ayuda")) imprimirAyuda();
+        if(palabraMando.equals("ir")) irHabitacion(command);
+        return false;
     }
 
     private void imprimirAyuda() {
