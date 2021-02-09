@@ -30,6 +30,8 @@ public class Game {
         pub.setSalidas(null, afuera, null, null);
         laboratorio.setSalidas(afuera, oficina, null, null);
         oficina.setSalidas(null, null, null, laboratorio);
+        
+        habitacionActual = afuera;
     }
     //Ejecuta el juego hasta que el usuario decida salirse.
     public void jugar(){
