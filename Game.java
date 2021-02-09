@@ -19,11 +19,11 @@ public class Game {
     
     private void crearHabitaciones() {
         Room afuera,teatro,pub,laboratorio,oficina;
-        afuera= new Room("fuera de la entrada principal de la universidad");
-        teatro= new Room("en una sala de conferencias");
-        pub= new Room("en el pub del campus");
-        laboratorio= new Room("en un laboratorio de computación");
-        oficina=new Room("en la oficina de administración informática");
+        afuera = new Room("fuera de la entrada principal de la universidad");
+        teatro = new Room("en una sala de conferencias");
+        pub = new Room("en el pub del campus");
+        laboratorio = new Room("en un laboratorio de computación");
+        oficina = new Room("en la oficina de administración informática");
         
         afuera.setSalidas(null, teatro, laboratorio, pub);
         teatro.setSalidas(null, null, null, afuera);
