@@ -46,7 +46,7 @@ public class Command {
      */
     public boolean esDesconocido()
     {
-        return (palabraComando == null);
+        return esNulo(palabraComando);
     }
 
     /*
@@ -54,6 +54,10 @@ public class Command {
      */
     public boolean tieneSegundaPalabra()
     {
-        return (segundaPalabra != null);
+        return !esNulo(segundaPalabra);
+    }
+
+    private boolean esNulo(String palabra) {
+    	return palabra == null;
     }
 }

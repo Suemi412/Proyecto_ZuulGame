@@ -19,17 +19,19 @@ public class Game {
     
     private void crearHabitaciones() {
         Room afuera,teatro,pub,laboratorio,oficina;
-        afuera= new Room("fuera de la entrada principal de la universidad");
-        teatro= new Room("en una sala de conferencias");
-        pub= new Room("en el pub del campus");
-        laboratorio= new Room("en un laboratorio de computación");
-        oficina=new Room("en la oficina de administración informática");
+        afuera = new Room("fuera de la entrada principal de la universidad");
+        teatro = new Room("en una sala de conferencias");
+        pub = new Room("en el pub del campus");
+        laboratorio = new Room("en un laboratorio de computación");
+        oficina = new Room("en la oficina de administración informática");
         
         afuera.setSalidas(null, teatro, laboratorio, pub);
         teatro.setSalidas(null, null, null, afuera);
         pub.setSalidas(null, afuera, null, null);
         laboratorio.setSalidas(afuera, oficina, null, null);
         oficina.setSalidas(null, null, null, laboratorio);
+        
+        habitacionActual = afuera;
     }
     //Ejecuta el juego hasta que el usuario decida salirse.
     public void jugar(){
@@ -47,21 +49,7 @@ public class Game {
         System.out.println("World of Zuul es un juego de aventuras nuevo e increíblemente aburrido.");
         System.out.println("Escriba 'help' si necesita ayuda.");
         System.out.println();
-        System.out.println("Usted está " + habitacionActual.getDescripcion());
-        System.out.print("Salidas: ");
-        if(habitacionActual.salidaNorte != null) {
-            System.out.print("norte ");
-        }
-        if(habitacionActual.salidaEste != null) {
-            System.out.print("este ");
-        }
-        if(habitacionActual.salidaSur != null) {
-            System.out.print("sur ");
-        }
-        if(habitacionActual.salidaOeste != null) {
-            System.out.print("oeste ");
-        }
-        System.out.println();
+        printSalidasActuales();
     }
     /*Tomando el mando que se coloco lo procesa para 
     revisar si el usuario no quiere salirse del juego, 
@@ -69,24 +57,15 @@ public class Game {
     y mandar a sus respectivas funciones si el usuario puso otra mando.
     */
     private boolean comandoProceso(Command command) {
-        boolean quiereSalir=false;
         if(command.esDesconocido()){
             System.out.println("No entiendo lo que quisiste decir");
             return false;
         }
-        String palabraMando=command.getPalabraComando();
-        if(palabraMando.equals("ayuda")){
-            imprimirAyuda();
-        }else{
-            if(palabraMando.equals("ir")){
-                irHabitacion(command);
-            }else{
-                if(palabraMando.equals("salir")){
-                    quiereSalir=salir(command);
-                }
-            }
-        }
-        return quiereSalir;
+        String palabraMando = command.getPalabraComando();
+        if(palabraMando.equals("salir")) return salir(command);
+        if(palabraMando.equals("ayuda")) imprimirAyuda();
+        if(palabraMando.equals("ir")) irHabitacion(command);
+        return false;
     }
 
     private void imprimirAyuda() {
@@ -122,21 +101,7 @@ public class Game {
             System.out.println("¡No hay puerta!");
         }else{
             habitacionActual=SigHabitacion;
-            System.out.println("Usted está " + habitacionActual.getDescripcion());
-            System.out.println("Salidas:");
-            if(habitacionActual.salidaNorte != null) {
-                System.out.print("norte ");
-            }
-            if(habitacionActual.salidaEste != null) {
-                System.out.print("este ");
-            }
-            if(habitacionActual.salidaSur != null) {
-                System.out.print("sur ");
-            }
-            if(habitacionActual.salidaOeste != null) {
-                System.out.print("oeste ");
-            }
-            System.out.println();
+            printSalidasActuales();
         }
     }
 
@@ -150,5 +115,17 @@ public class Game {
     }
     public static void main(String args[]){
         new Game().jugar();
+    }
+    
+    private void printSalidasActuales() {
+    	System.out.println("Usted esta " + habitacionActual.getDescripcion());
+        System.out.println("Salidas:");
+        
+        if(habitacionActual.salidaNorte != null) System.out.print("norte ");
+        if(habitacionActual.salidaEste != null) System.out.print("este ");
+        if(habitacionActual.salidaSur != null) System.out.print("sur ");
+        if(habitacionActual.salidaOeste != null) System.out.print("oeste ");
+        
+        System.out.println();
     }
 }

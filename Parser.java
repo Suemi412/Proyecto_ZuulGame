@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
  * @author 52999
  */
 public class Parser {
-    private CommandWords comands; //Contiene todas las palabras comando validas
+    private CommandWords commands; //Contiene todas las palabras comando validas
     private Scanner reader; //Leector de la consola
     
     /** Inicializa el objeto para la lectura de consola. */
@@ -23,15 +23,20 @@ public class Parser {
     /**Analiza y devuelve el comando que da el usuario. */
     public Command getCommand(){
         String entrada;
-        String palabra1 = null;
-        String palabra2 = null;
         
         //Lectura de la entrada.
         System.out.print("> ");
         entrada = reader.nextLine();
         
-        //Tokeniza la entrada en busca de la primera y
-        //segunda palabra, ignora todas las demás.
+        //Llamada a tokenizer.
+        return tokenizer(entrada);
+    }
+    
+    /**Tokeniza la entrada en busca de la primera y
+    segunda palabra, ignora todas las demás.*/
+    private Command tokenizer(String entrada){
+        String palabra1 = null;
+        String palabra2 = null;
         Scanner tokenizer = new Scanner(entrada);
         if(tokenizer.hasNext()) {
             palabra1 = tokenizer.next();
@@ -40,7 +45,12 @@ public class Parser {
             }
         }
         
-        //Verifica si las palabras encontradas son comandos validos.
+        //Llamada a validación.
+        return validarComando(palabra1, palabra2);
+    }
+    
+    /**Verifica si las palabras encontradas son comandos validos.*/
+    private Command validarComando(String palabra1, String palabra2){
         if(commands.validarMando(palabra1)) {
             return new Command(palabra1, palabra2);
         }

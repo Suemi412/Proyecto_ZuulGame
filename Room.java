@@ -26,17 +26,20 @@ public class Room {
     recibe null si no hay habitación en esa salida, y de ser el caso
     permanece null el atributo.*/
     public void setSalidas(Room norte, Room sur, Room este, Room oeste){
-        if(norte != null){
-            salidaNorte = norte;
-        }
-        if(sur != null){
-            salidaSur = sur;
-        }
-        if(este != null){
-            salidaEste = este;
-        }
-        if(oeste != null){
-            salidaOeste = oeste;
+        putRoom(norte, 0);
+        putRoom(sur, 1);
+        putRoom(este, 2);
+        putRoom(oeste, 3);
+    }
+    
+    private void putRoom(Room room, int i){
+        if(room != null){
+            switch(i){
+                case 0 -> salidaNorte = room;
+                case 1 -> salidaSur = room;
+                case 2 -> salidaEste = room;
+                case 3 -> salidaOeste = room;
+            }
         }
     }
     
