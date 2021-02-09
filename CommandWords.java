@@ -12,11 +12,11 @@ public class CommandWords {
     public CommandWords(){
     }
     //Array que contienen los comandos validos 
-    private static final String[] comandosValidos={
+    private static final String[] mandosValidos={
         "ir","salir","ayuda"
     }
     //Lo que se hace es checar cuanquier palabra que se de para revisar si es un comando valido
-    public boolean validarComando(String palabra){
+    public boolean validarMando(String palabra){
         for(int i=0; i<ComandosValidos.length;i++){
             if(comandosValidos[i].equals(palabra)){
                 return true;
