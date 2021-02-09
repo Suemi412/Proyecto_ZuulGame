@@ -13,7 +13,7 @@ public class CommandWords {
     }
     //Array que contienen los comandos validos 
     private static final String[] comandosValidos={
-        "go","quit!,!help
+        "go","quit","help"
     }
     //Lo que se hace es checar cuanquier palabra que se de para revisar si es un comando valido
     public boolean validarComando(String palabra){
