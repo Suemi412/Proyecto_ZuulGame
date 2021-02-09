@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
  * @author 52999
  */
 public class Parser {
-    private CommandWords comands; //Contiene todas las palabras comando validas
+    private CommandWords commands; //Contiene todas las palabras comando validas
     private Scanner reader; //Leector de la consola
     
     /** Inicializa el objeto para la lectura de consola. */
